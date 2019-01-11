@@ -8,13 +8,13 @@ for (const p of [new Alexa(), new GoogleAssistant()]) {
     const testSuite = p.makeTestSuite();
 
     describe(`PLATFORM: ${p.constructor.name} INTENTS` , () => {
-        test('should return a welcome message and ask for the name at "LAUNCH"', async () => {
+        test('should introduce Patrick Sweetman', async () => {
             const conversation = testSuite.conversation();
 
             const launchRequest = await testSuite.requestBuilder.launch();
             const responseLaunchRequest = await conversation.send(launchRequest);
             expect(
-                responseLaunchRequest.isAsk('Hello World! What\'s your name?', 'Please tell me your name.')
+                responseLaunchRequest.isTell('Meet Patrick. He is a voice app developer who has been building apps on GoogleAssistant and Amazon Alexa for over three years. Patrick is a senior at the Ohio State University. You can see the apps Pat has built on his github.')
             ).toBe(true);
 
         });
